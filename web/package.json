@@ -1,0 +1,22 @@
+{
+  "name": "secretsecp-web",
+  "version": "1.0.0",
+  "description": "secretSecp web UI",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p dist && esbuild src/main.js --bundle --minify --format=iife --target=es2020 --outfile=dist/app.js && cp index.html style.css manifest.webmanifest icon-512.png dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@noble/ciphers": "^2.4.0",
+    "@noble/curves": "^2.4.0",
+    "@noble/hashes": "^2.4.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "type": "module",
+  "private": true
+}

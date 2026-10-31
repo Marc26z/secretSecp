@@ -1,0 +1,6 @@
+repository: https://github.com/Marc26z/secretSecp
+pubkey: npub1marc26z8nh3xkj5rcx7ufkatvx6ueqhp5vfw9v5teq26z254renshtf3g0
+name: secretSecp
+summary: Turn a Nostr nsec into a NIP-49 ncryptsec protected by a passphrase.
+icon: web/icon-512.png
+tags: [nostr, security, nip49, keys]

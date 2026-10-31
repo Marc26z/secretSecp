@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="color-scheme" content="dark">
+  <title>secretSecp</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-512.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <img class="mark" src="icon-512.png" alt="">
+      <div>
+        <h1>secretSecp</h1>
+        <p>Turn your Nostr nsec into a NIP-49 ncryptsec protected by a passphrase.</p>
+      </div>
+    </header>
+
+    <section class="card" id="keyCard">
+      <p class="label">your key</p>
+
+      <div id="signin">
+        <input id="nsec" class="field mono" type="password" placeholder="nsec1… or 64 hex"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="nsec">
+        <p class="hint">Paste the key you are logged in with. It stays on this device.</p>
+        <button id="useKey" class="btn wide" type="button">use this key</button>
+        <p id="keyError" class="error" role="alert"></p>
+      </div>
+
+      <div id="signedin" hidden>
+        <p class="hint">signed in as</p>
+        <p id="npub" class="mono green break"></p>
+        <button id="changeKey" class="link" type="button">change</button>
+      </div>
+    </section>
+
+    <div id="form" hidden>
+      <section class="card">
+        <p class="label">passphrase</p>
+        <input id="pass" class="field" type="password" placeholder="a long passphrase"
+               autocomplete="new-password" aria-label="passphrase">
+        <input id="pass2" class="field" type="password" placeholder="repeat it"
+               autocomplete="new-password" aria-label="repeat passphrase">
+        <p id="passError" class="error" role="alert"></p>
+        <p class="hint">The ncryptsec can only be opened with this passphrase. It is not stored.</p>
+      </section>
+
+      <section class="card">
+        <div class="row between">
+          <p class="label">work factor</p>
+          <p id="workLabel" class="mono small">2^16 · 64 MiB</p>
+        </div>
+        <input id="logn" class="range" type="range" min="12" max="18" step="1" value="16" aria-label="work factor">
+        <p class="hint">Higher takes longer to crack, and longer to open.</p>
+      </section>
+
+      <section class="card">
+        <p class="label">how was this key handled?</p>
+        <div class="chips" role="group" aria-label="key security">
+          <button class="chip active" data-ksb="0" type="button">pasted</button>
+          <button class="chip" data-ksb="1" type="button">always encrypted</button>
+          <button class="chip" data-ksb="2" type="button">unknown</button>
+        </div>
+        <p id="ksbText" class="hint">This key was pasted or stored unencrypted, so it has been handled insecurely.</p>
+      </section>
+
+      <button id="encrypt" class="btn wide primary" type="button">encrypt nsec</button>
+      <p id="encryptError" class="error" role="alert"></p>
+    </div>
+
+    <section id="result" class="card" hidden>
+      <div class="row between">
+        <p class="title green">encrypted</p>
+        <button id="newKey" class="link" type="button">new key</button>
+      </div>
+      <p class="label">signed in as</p>
+      <p id="resultNpub" class="mono small break"></p>
+      <p class="label">ncryptsec</p>
+      <p id="resultNcrypt" class="mono small break"></p>
+      <div class="row">
+        <button id="copy" class="btn" type="button">copy</button>
+        <button id="share" class="btn" type="button">share</button>
+      </div>
+      <p class="hint">Keep the passphrase somewhere else, and remember that there is no way to recover it.</p>
+    </section>
+
+    <p class="foot">Runs entirely on this device. Nothing is sent anywhere.</p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

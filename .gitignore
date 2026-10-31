@@ -1,0 +1,7 @@
+node_modules/
+web/dist/
+dist/
+keystore.p12
+.keystore-password
+.env
+*.apk
